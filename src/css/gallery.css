@@ -21,7 +21,11 @@
     cursor: zoom-in;
 }
 
-.modal-image {
+/* .modal-image {
     width: 1112px;
     height: 640px;
+} */
+.sl-wrapper{
+    background-color: rgba(46, 47, 66, 0.8);
+    color: white;
 }

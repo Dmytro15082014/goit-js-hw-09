@@ -1,4 +1,3 @@
-"use strict"
 const images = [
   {
     preview:
@@ -65,21 +64,26 @@ const images = [
   },
 ];
 
+import simpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const gallery = document.querySelector(".gallery");
 gallery.insertAdjacentHTML("beforeend", createMarkup(images));
+new simpleLightbox('.gallery-link', { overlayOpacity: '0.8', captionDelay: '250', widthRatio: '0.7745' })
+
 
 function createMarkup(arr) {    
-    return arr.map((item) =>
+    return arr.map(({preview, original, description}) =>
         `
         <li class="gallery-item">
-            <a class="gallery-link" href="${item.original}">
+            <a class="gallery-link" href="${original}">
                 <img
                     class="gallery-image"
-                    src="${item.preview}"
-                    data-source="${item.original}"
-                    alt="${item.description}"
+                    src="${preview}"
+                    alt="${description}"
+                    title="${description}"
                 />
             </a>
-        </li>
-    `).join("");
+        </li>`
+    ).join("");
 }
