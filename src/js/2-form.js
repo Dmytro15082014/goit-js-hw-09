@@ -13,7 +13,7 @@ formFeed.addEventListener("submit", handleFeedback);
 const values = JSON.parse(localStorage.getItem(LC_KEY)) ?? { email: "", message: "" };
 savedFields(values);
 
-function handleInput(e) {    
+function handleInput(e) {
     if (values.email) {
         formData.email = values.email;
     }
@@ -31,9 +31,9 @@ function handleFeedback(e) {
     } else {
         return alert('Fill please all fields');
     }
-    localStorage.removeItem(LC_KEY);
     formData.email = "";
     formData.message = "";
+    localStorage.removeItem(LC_KEY);
     e.target.reset();
 }
 
