@@ -6,35 +6,42 @@ const LC_KEY = "feedback-form-state";
 
 const formFeed = document.querySelector(".feedback-form");
 const inputMail = formFeed.elements.email;
-const message = formFeed.elements.message;
+const messageText = formFeed.elements.message;
 
 formFeed.addEventListener("input", handleInput);
-formFeed.addEventListener("submit", handleFeedBack);
+formFeed.addEventListener("submit", handleFeedback);
+const values = JSON.parse(localStorage.getItem(LC_KEY)) ?? { email: "", message: "" };
+savedFields(values);
 
-saveFeed()
-
-function handleInput(e) {
-    if (e.target.name === "email") {
-        formData.email = e.target.value;
-        localStorage.setItem(LC_KEY, JSON.stringify(formData.email))
-    } else {
-        formData.message = e.target.value;
-        localStorage.setItem(LC_KEY, JSON.stringify(formData.message))
+function handleInput(e) {    
+    if (values.email) {
+        formData.email = values.email;
     }
+    if (values.message) {
+        formData.message = values.message;
+    }
+    e.target.name === "email" ? formData.email = e.target.value : formData.message = e.target.value;
+
     localStorage.setItem(LC_KEY, JSON.stringify(formData))
-}
+};
 
-function handleFeedBack(e) {
+function handleFeedback(e) {
     e.preventDefault();
-    localStorage.removeItem(LC_KEY)
-    formFeed.reset()
+    if (inputMail.value && messageText.value) {
+        console.log(JSON.parse(localStorage.getItem(LC_KEY)));
+    } else {
+        return alert('Fill please all fields');
+    }
+    localStorage.removeItem(LC_KEY);
+    formFeed.reset();
 }
 
-function saveFeed() {
-    const saveText = JSON.parse(localStorage.getItem(LC_KEY));
-    console.log(saveText);
-    if (saveText) {
-        inputMail.value = saveText.email;
-        message.value = saveText.message;
+function savedFields({email, message}) {
+    if (email) {
+        inputMail.value = email;
+    };
+
+    if (message) {
+        messageText.value = message;
     }
 }
