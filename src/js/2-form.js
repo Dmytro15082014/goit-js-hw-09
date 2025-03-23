@@ -19,9 +19,8 @@ function handleInput(e) {
     }
     if (values.message) {
         formData.message = values.message;
-    }
+    } 
     e.target.name === "email" ? formData.email = e.target.value : formData.message = e.target.value;
-
     localStorage.setItem(LC_KEY, JSON.stringify(formData))
 };
 
@@ -33,14 +32,15 @@ function handleFeedback(e) {
         return alert('Fill please all fields');
     }
     localStorage.removeItem(LC_KEY);
-    formFeed.reset();
+    formData.email = "";
+    formData.message = "";
+    e.target.reset();
 }
 
 function savedFields({email, message}) {
     if (email) {
         inputMail.value = email;
     };
-
     if (message) {
         messageText.value = message;
     }
