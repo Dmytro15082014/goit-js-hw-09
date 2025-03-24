@@ -64,12 +64,12 @@ const images = [
   },
 ];
 
-import simpleLightbox from "simplelightbox";
+import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const gallery = document.querySelector(".gallery");
 gallery.insertAdjacentHTML("beforeend", createMarkup(images));
-new simpleLightbox('.gallery-link', { overlayOpacity: '0.8', captionDelay: '250', widthRatio: '0.7745' })
+const constructor = new SimpleLightbox ('.gallery-link', { captionsData : 'alt', captionDelay: "250"})
 
 
 function createMarkup(arr) {    
@@ -81,7 +81,6 @@ function createMarkup(arr) {
                     class="gallery-image"
                     src="${preview}"
                     alt="${description}"
-                    title="${description}"
                 />
             </a>
         </li>`
