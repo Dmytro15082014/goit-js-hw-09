@@ -26,7 +26,7 @@ function handleInput(e) {
 
 function handleFeedback(e) {
     e.preventDefault();
-    if (inputMail.value && messageText.value) {
+    if (inputMail.value && messageText.value !== " ") {
         console.log(JSON.parse(localStorage.getItem(LC_KEY)));
     } else {
         return alert('Fill please all fields');
